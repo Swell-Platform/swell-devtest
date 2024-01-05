@@ -1,4 +1,4 @@
-const nxPreset = require('@nrwl/jest/preset').default;
+const nxPreset = require('@nx/jest/preset').default;
 const dotenv = require('dotenv');
 
 dotenv.config({ path: './.env' });

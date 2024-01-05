@@ -1,16 +1,20 @@
 {
+	"name": "reviews-api",
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "apps/reviews-api/src",
 	"projectType": "application",
 	"targets": {
 		"build": {
-			"executor": "@nrwl/node:webpack",
+			"executor": "@nx/webpack:webpack",
 			"outputs": ["{options.outputPath}"],
 			"options": {
 				"outputPath": "dist/apps/reviews-api",
 				"main": "apps/reviews-api/src/main.ts",
 				"tsConfig": "apps/reviews-api/tsconfig.app.json",
-				"assets": ["apps/reviews-api/src/assets"]
+				"assets": ["apps/reviews-api/src/assets"],
+				"compiler": "tsc",
+				"target": "node",
+				"webpackConfig": "apps/reviews-api/webpack.config.js"
 			},
 			"configurations": {
 				"production": {
@@ -27,7 +31,7 @@
 			}
 		},
 		"serve": {
-			"executor": "@nrwl/node:node",
+			"executor": "@nx/js:node",
 			"options": {
 				"buildTarget": "reviews-api:build"
 			},
@@ -38,18 +42,14 @@
 			}
 		},
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
-			"outputs": ["{options.outputFile}"],
-			"options": {
-				"lintFilePatterns": ["apps/reviews-api/**/*.ts"]
-			}
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
 		},
 		"test": {
-			"executor": "@nrwl/jest:jest",
-			"outputs": ["coverage/apps/reviews-api"],
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/apps/reviews-api"],
 			"options": {
-				"jestConfig": "apps/reviews-api/jest.config.ts",
-				"passWithNoTests": true
+				"jestConfig": "apps/reviews-api/jest.config.ts"
 			},
 			"dependsOn": ["create-test-db"]
 		},

@@ -1,10 +1,11 @@
 {
+	"name": "reviews-client",
 	"$schema": "../../node_modules/nx/schemas/project-schema.json",
 	"sourceRoot": "apps/reviews-client/src",
 	"projectType": "application",
 	"targets": {
 		"build": {
-			"executor": "@nrwl/web:webpack",
+			"executor": "@nx/webpack:webpack",
 			"outputs": ["{options.outputPath}"],
 			"defaultConfiguration": "production",
 			"options": {
@@ -18,7 +19,7 @@
 				"assets": ["apps/reviews-client/src/assets"],
 				"styles": [],
 				"scripts": [],
-				"webpackConfig": "@nrwl/react/plugins/webpack"
+				"webpackConfig": "apps/reviews-client/webpack.config.js"
 			},
 			"configurations": {
 				"development": {
@@ -44,7 +45,7 @@
 			}
 		},
 		"serve": {
-			"executor": "@nrwl/web:dev-server",
+			"executor": "@nx/webpack:dev-server",
 			"defaultConfiguration": "development",
 			"options": {
 				"buildTarget": "reviews-client:build",
@@ -62,18 +63,14 @@
 			}
 		},
 		"lint": {
-			"executor": "@nrwl/linter:eslint",
-			"outputs": ["{options.outputFile}"],
-			"options": {
-				"lintFilePatterns": ["apps/reviews-client/**/*.{ts,tsx,js,jsx}"]
-			}
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
 		},
 		"test": {
-			"executor": "@nrwl/jest:jest",
-			"outputs": ["coverage/apps/reviews-client"],
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/apps/reviews-client"],
 			"options": {
-				"jestConfig": "apps/reviews-client/jest.config.ts",
-				"passWithNoTests": true
+				"jestConfig": "apps/reviews-client/jest.config.ts"
 			}
 		}
 	},
