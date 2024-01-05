@@ -56,11 +56,11 @@ If you don't already have nvm installed, you can install it by following the ins
 - [macOS/Linux](https://github.com/nvm-sh/nvm)
 - [Windows](https://github.com/coreybutler/nvm-windows)
 
-Once you have nvm installed, you can install Node v18 by running the following command:
+Once you have nvm installed, you can install Node v20 by running the following command:
 
 ```bash
-nvm install 18.0.0
-nvm use 18.0.0
+nvm install 20.10.0
+nvm use 20.10.0
 ```
 
 ### Install Dependencies
