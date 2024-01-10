@@ -5,6 +5,7 @@ import { DatabaseModule } from '../database/database.module';
 import { DatabaseService } from '../database/database.service';
 import { ReviewsController } from './reviews.controller';
 import { ReviewsService } from './reviews.service';
+import exp = require('constants');
 
 describe('ReviewsController', () => {
 	const user1Id = 'user-1';
@@ -81,7 +82,11 @@ describe('ReviewsController', () => {
 	});
 
 	describe('getReviews()', () => {
-		it.todo('should fetch all reviews');
+		it.todo('should fetch all reviews', async () => {
+			const response = await request(app.getHttpServer()).get('/reviews');
+			expect(response.status).toBe(200);
+			expect(response.body.reviews.length).toBe(1000);
+		});
 
 		it.todo('should fetch reviews in descending order by date');
 

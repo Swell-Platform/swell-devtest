@@ -7,7 +7,7 @@ describe('ReviewsList', () => {
 		expect(baseElement).toBeTruthy();
 	});
 
-	it.todo('should render list of reviews');
+	it.todo('should render list of reviews', () => {});
 
 	it.todo('should display message if no reviews are found');
 
