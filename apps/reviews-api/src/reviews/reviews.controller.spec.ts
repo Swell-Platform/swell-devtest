@@ -5,7 +5,7 @@ import { DatabaseModule } from '../database/database.module';
 import { DatabaseService } from '../database/database.service';
 import { ReviewsController } from './reviews.controller';
 import { ReviewsService } from './reviews.service';
-import exp = require('constants');
+//import exp = require('constants');
 
 describe('ReviewsController', () => {
 	const user1Id = 'user-1';

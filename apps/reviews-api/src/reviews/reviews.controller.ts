@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { ReviewsService } from './reviews.service';
-import { ReviewsCountResponse, ReviewsResponse, ReviewExt } from './reviews.types';
+import { ReviewsCountResponse, ReviewsResponse } from './reviews.types';
 
 @Controller('reviews')
 export class ReviewsController {
