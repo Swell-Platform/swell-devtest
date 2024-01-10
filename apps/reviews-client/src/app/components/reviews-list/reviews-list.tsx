@@ -1,36 +1,34 @@
 import Alert from '@mui/material/Alert';
 import TaskIcon from '@mui/icons-material/Task';
-import {
-	Avatar,
-	Divider,
-	Card,
-	CardContent,
-	List,
-	ListItem,
-	Typography,
-	Rating,
-} from '@mui/material';
+import { Divider, Card, CardContent, List, ListItem, Typography } from '@mui/material';
 //import { ReviewsResponse } from '../../../../../reviews-api/src/reviews/reviews.types.ts'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Company, Review, User } from '@prisma/client';
 
 /* eslint-disable-next-line */
+
 export interface ReviewsListProps extends Review {
 	user: User;
+	review: Review;
 	company: Company;
 }
 
-const ReviewItem = ({ user, company, review }) => {
-	const { firstname, lastname } = user;
+const ReviewItem: React.FC<ReviewsListProps> = ({
+	user,
+	company,
+	createdOn,
+	rating,
+	reviewText,
+}) => {
+	const { firstName, lastName } = user;
 	const { name: companyName } = company;
-	const { createdOn, rating, reviewText } = review;
 
 	return (
 		<ListItem>
 			<Card>
 				<CardContent>
-					<Typography variant="h6">{`${firstname} ${lastname}`}</Typography>
+					<Typography variant="h6">{`${firstName} ${lastName}`}</Typography>
 					<Typography variant="subtitle1">{companyName}</Typography>
 					<Typography variant="caption">{createdOn}</Typography>
 					{rating && <Typography variant="body2">Rating: {rating}</Typography>}
@@ -41,14 +39,14 @@ const ReviewItem = ({ user, company, review }) => {
 	);
 };
 
-export function ReviewsList(props: ReviewsListProps) {
+export function ReviewsList() {
 	const [reviews, setReviews] = useState<ReviewsListProps[] | null>(null);
 
 	useEffect(() => {
 		const fetchReviews = async () => {
 			try {
 				const response = await axios.get('http://localhost:3333/api/reviews/');
-				setReviews(response.data);
+				setReviews(response.data.reviews);
 			} catch (error) {
 				console.error('Error fetching reviews:', error);
 			}
